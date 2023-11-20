@@ -19,8 +19,9 @@ class PublishedModel(models.Model):
         return self.title
 
 
-# (Тематическая категория)
 class Category(PublishedModel):
+    """(Тематическая категория)"""
+
     title = models.CharField(max_length=256, verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание')
     slug = models.SlugField(unique=True, verbose_name='Идентификатор',
@@ -36,8 +37,9 @@ class Category(PublishedModel):
         return self.title
 
 
-# (Географическая метка)
 class Location(PublishedModel):
+    """(Географическая метка)"""
+
     name = models.CharField(max_length=256, verbose_name='Название места')
 
     class Meta:
@@ -48,8 +50,9 @@ class Location(PublishedModel):
         return self.name
 
 
-# (Публикация)
 class Post(PublishedModel):
+    """(Публикация)"""
+
     title = models.CharField(max_length=256, verbose_name='Заголовок')
     text = models.TextField(verbose_name='Текст')
     pub_date = models.DateTimeField(verbose_name='Дата и время публикации',
@@ -78,7 +81,6 @@ class Post(PublishedModel):
         verbose_name='Категория',
         related_name='posts',
     )
-
     image = models.ImageField(
         verbose_name='Фото',
         upload_to='post_images/',
